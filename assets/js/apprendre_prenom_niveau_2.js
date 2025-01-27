@@ -13,7 +13,7 @@ const flag = document.createElement("div");
 flag.id = "flag"; // Attribuer un ID pour le drapeau
 
 const player = document.createElement("div");
-player.classList.add("player"); // Ajouter la classe 'player' pour le style du joueur
+player.classList.add("player"); // Ajouter la classe 'player' pour le style du joueur 
 
 function createBoard() {
   board.innerHTML = "";
@@ -51,7 +51,7 @@ function generateQuestion() {
   usedNames.push(currentName);
   names.splice(randomIndex, 1);
 
-  audioElement.src = `http://127.0.0.1:5500/assets/audio/prenom/${currentName}.mp3`;
+  audioElement.src = `../../../assets/audio/prenom/${currentName}.mp3`;
   audioElement.play();
 }
 
