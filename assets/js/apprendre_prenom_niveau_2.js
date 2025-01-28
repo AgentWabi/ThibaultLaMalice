@@ -51,7 +51,7 @@ function generateQuestion() {
   usedNames.push(currentName);
   names.splice(randomIndex, 1);
 
-  audioElement.src = `http://127.0.0.1:5500/assets/audio/prenom/${currentName}.mp3`;
+  audioElement.src = `../../../assets/audio/prenom/${currentName}.mp3`;
   audioElement.play();
 }
 
