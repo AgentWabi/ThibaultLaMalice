@@ -1,4 +1,5 @@
 const startButton = document.getElementById("start-btn");
+const replayButton = document.getElementById("replay-btn");
 const board = document.getElementById("board");
 const buttonsContainer = document.getElementById("buttons-container");
 const audioElement = document.getElementById("audio");
@@ -10,10 +11,10 @@ let currentName = "";
 
 // Création du drapeau et du joueur
 const flag = document.createElement("div");
-flag.id = "flag"; // Attribuer un ID pour le drapeau
+flag.id = "flag";
 
 const player = document.createElement("div");
-player.classList.add("player"); // Ajouter la classe 'player' pour le style du joueur 
+player.classList.add("player");
 
 function createBoard() {
   board.innerHTML = "";
@@ -21,7 +22,7 @@ function createBoard() {
     const cell = document.createElement("div");
     board.appendChild(cell);
   }
-  board.appendChild(flag); // Ajoute le drapeau à la fin
+  board.appendChild(flag);
 }
 
 function startGame() {
@@ -31,8 +32,9 @@ function startGame() {
   createBoard();
   buttonsContainer.innerHTML = "";
   startButton.style.display = "none";
-  board.appendChild(player); // Ajoute le joueur au tableau
-  movePlayerTo(0); // Place le joueur au départ
+  replayButton.style.display = "none";
+  board.appendChild(player);
+  movePlayerTo(0);
   generateButtons();
   generateQuestion();
 }
@@ -42,9 +44,9 @@ function generateQuestion() {
     audioElement.src = `../../../assets/audio/jeu/ExoFini.mp3`;
     audioElement.play();
     startButton.style.display = "block";
+    replayButton.style.display = "none";
     return;
   }
-
 
   const randomIndex = Math.floor(Math.random() * names.length);
   currentName = names[randomIndex];
@@ -53,6 +55,8 @@ function generateQuestion() {
 
   audioElement.src = `../../../assets/audio/prenom/${currentName}.mp3`;
   audioElement.play();
+
+  replayButton.style.display = "block";
 }
 
 function generateButtons() {
@@ -84,8 +88,15 @@ function movePlayer() {
 
 function movePlayerTo(position) {
   const cell = board.children[position];
-  player.style.left = `${cell.offsetLeft + 5}px`;
-  player.style.top = `${cell.offsetTop + 5}px`;
+  player.style.left = `${cell.offsetLeft + 0}px`;
+  player.style.top = `${cell.offsetTop + 0}px`;
 }
+
+replayButton.addEventListener("click", () => {
+  if (currentName) {
+    audioElement.src = `../../../assets/audio/prenom/${currentName}.mp3`;
+    audioElement.play();
+  }
+});
 
 startButton.addEventListener("click", startGame);
